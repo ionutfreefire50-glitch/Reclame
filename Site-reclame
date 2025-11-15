@@ -1,0 +1,181 @@
+<!doctype html>
+
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Platformă Reclame — Exemplu</title>
+  <meta name="description" content="Platformă demo pentru afișare reclame. Ușor de personalizat și de publicat." />
+  <style>
+    :root{--bg:#0f1724;--card:#0b1320;--accent:#00aaff;--muted:#9aa4b2;--glass:rgba(255,255,255,0.03)}
+    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{margin:0;background:linear-gradient(180deg,#071024 0%,#07101a 60%);color:#e6eef8}
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px 28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7f5bff);display:flex;align-items:center;justify-content:center;font-weight:700}
+    h1{margin:0;font-size:18px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px}.hero{padding:36px 28px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+.hero-card{background:var(--glass);padding:20px;border-radius:14px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+.big{font-size:28px;margin:0 0 10px}
+.lead{color:var(--muted);margin:0 0 18px}
+.cta{display:inline-block;background:var(--accent);color:#012;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
+
+.ad-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;padding:20px}
+.ad{background:linear-gradient(180deg,#07142a,#0d1b2b);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+.ad img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+.ad h3{margin:10px 0 6px;font-size:16px}
+.ad p{margin:0;color:var(--muted);font-size:13px}
+
+footer{padding:20px 28px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+/* responsive */
+@media (max-width:880px){.hero{grid-template-columns:1fr;}.hero-card{order:2}}
+
+/* small interactive elements */
+.uploader{display:flex;gap:8px}
+input[type=file]{display:none}
+.file-label{padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:8px;cursor:pointer}
+
+/* simple carousel */
+.carousel{position:relative;overflow:hidden;border-radius:12px}
+.slides{display:flex;transition:transform 400ms ease}
+.slide{min-width:100%;padding:24px;background:linear-gradient(180deg,#062033,#06314b)}
+.carousel-buttons{position:absolute;top:50%;left:8px;right:8px;display:flex;justify-content:space-between;transform:translateY(-50%)}
+.btn{background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;color:#fff}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">R</div>
+      <div>
+        <h1>Reclame Rapid</h1>
+        <div style="font-size:12px;color:var(--muted)">Platformă demo pentru afișare reclame</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#ads">Ads</a>
+      <a href="#upload">Încarcă</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>  <section class="hero">
+    <div class="hero-card">
+      <h2 class="big">Afișează-ți reclamele rapid</h2>
+      <p class="lead">Platforma optimizată pentru afișare reclame: bannere, carusele și zone sponsorizate. Personalizează îți campania în doar câteva click-uri.</p>
+      <a class="cta" href="#upload">Încarcă un ad</a><hr style="margin:18px 0;border:none;border-top:1px solid rgba(255,255,255,0.03)" />
+
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <div style="min-width:160px">
+      <div style="font-size:12px;color:var(--muted)">Vizualizări estimate</div>
+      <div style="font-weight:700;font-size:20px">3.2k / zi</div>
+    </div>
+    <div style="min-width:160px">
+      <div style="font-size:12px;color:var(--muted)">Preț mediu / afișare</div>
+      <div style="font-weight:700;font-size:20px">0.04€</div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-card">
+  <div style="margin-bottom:12px"><strong>Carusel promo</strong></div>
+  <div class="carousel" id="carousel">
+    <div class="slides" id="slides">
+      <div class="slide"><h3>Promo 1 — Oferta lunii</h3><p style="color:var(--muted)">Primește 20% discount la primul pachet.</p></div>
+      <div class="slide"><h3>Promo 2 — Banner Top</h3><p style="color:var(--muted)">Banner premium afișat pe pagina principală.</p></div>
+      <div class="slide"><h3>Promo 3 — Sponsorizat</h3><p style="color:var(--muted)">Poziții sponsorizate în feed.</p></div>
+    </div>
+    <div class="carousel-buttons">
+      <button class="btn" id="prev">◀</button>
+      <button class="btn" id="next">▶</button>
+    </div>
+  </div>
+</div>
+
+  </section>  <main>
+    <section id="ads" style="padding:8px 20px">
+      <h2 style="margin:8px 0 14px">Reclame active</h2>
+      <div class="ad-grid" id="ad-grid">
+        <!-- ads injected by JS -->
+      </div>
+    </section><section id="upload" style="padding:8px 20px">
+  <h2 style="margin:8px 0 14px">Încarcă reclama</h2>
+  <div class="hero-card" style="display:flex;flex-direction:column;gap:12px">
+    <label class="file-label">
+      <input id="file" type="file" accept="image/*" />
+      Alege un fișier imagine
+    </label>
+    <input id="title" placeholder="Titlu reclame" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit" />
+    <textarea id="desc" placeholder="Descriere" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea>
+    <div style="display:flex;gap:8px">
+      <button class="cta" id="add-ad">Adaugă reclama (demo)</button>
+      <button class="btn" id="clear">Șterge toate</button>
+    </div>
+    <div style="font-size:12px;color:var(--muted)">Această versiune demo nu încarcă fișiere pe server — le arată doar local în pagină.</div>
+  </div>
+</section>
+
+<section id="contact" style="padding:8px 20px">
+  <h2 style="margin:8px 0 14px">Contact</h2>
+  <div class="hero-card" style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-weight:700">email: </div>
+      <div style="color:var(--muted)">contact@exemplu-reclame.local</div>
+    </div>
+    <div>
+      <div style="font-weight:700">telefon: </div>
+      <div style="color:var(--muted)">+40 700 000 000</div>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <div>© {AN} Reclame Rapid</div>
+    <div style="font-size:13px;color:var(--muted)">Design demo • Disponibil pentru personalizare</div>
+  </footer>  <script>
+    // small demo data and behavior
+    const sampleAds = [
+      {img:'https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80&auto=format&fit=crop',title:'Cafea Buna',desc:'Promo 10% la cafele selecte.'},
+      {img:'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&q=80&auto=format&fit=crop',title:'Gadget X',desc:'Lansare nou model X.'},
+      {img:'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=1200&q=80&auto=format&fit=crop',title:'Călătorii',desc:'Ofertă city-break.'}
+    ];
+
+    const adGrid = document.getElementById('ad-grid');
+    function renderAds(list){
+      adGrid.innerHTML='';
+      list.forEach(a=>{
+        const el = document.createElement('div'); el.className='ad';
+        el.innerHTML = `<img src="${a.img}" alt="${a.title}" onerror="this.style.display='none'"/><h3>${a.title}</h3><p>${a.desc}</p>`;
+        adGrid.appendChild(el);
+      })
+    }
+
+    renderAds(sampleAds);
+
+    // upload (local demo)
+    document.getElementById('add-ad').addEventListener('click',()=>{
+      const file = document.getElementById('file').files[0];
+      const title = document.getElementById('title').value || 'Titlu necunoscut';
+      const desc = document.getElementById('desc').value || '';
+      if(file){
+        const url = URL.createObjectURL(file);
+        sampleAds.unshift({img:url,title,desc});
+        renderAds(sampleAds);
+      } else {
+        alert('Alege o imagine pentru demo (sau folosește imagini sample).');
+      }
+    });
+
+    document.getElementById('clear').addEventListener('click',()=>{sampleAds.length=0;renderAds(sampleAds)});
+
+    // carousel
+    let idx=0; const slides = document.getElementById('slides'); const total = slides.children.length;
+    function show(i){ idx = (i+total)%total; slides.style.transform = `translateX(-${idx*100}%)`; }
+    document.getElementById('prev').addEventListener('click',()=>show(idx-1));
+    document.getElementById('next').addEventListener('click',()=>show(idx+1));
+    setInterval(()=>show(idx+1),6000);
+
+    // footer year
+    document.querySelector('footer div').textContent = '© ' + (new Date()).getFullYear() + ' Reclame Rapid';
+  </script></body>
+</html>
